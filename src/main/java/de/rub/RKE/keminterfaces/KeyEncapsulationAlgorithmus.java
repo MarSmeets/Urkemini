@@ -8,10 +8,13 @@ public interface KeyEncapsulationAlgorithmus<KeypairType, PublicKeyType, Private
   
   public KeypairType gen();
   
+  //TODO: Discuss/Find useful Type for seed or "Seedtype"
+  public KeypairType genWithSeed(byte[] seed);
+  
   public PublicKeyType genPublicK(PrivateKeyType privateK);
   
-  public KemOutput enc(int keyLen, PublicKeyType pulicK);
+  public KemOutput enc(PublicKeyType pulicK);
   
-  public SymmetricKeyType dec(EncryptedDataType c, int keyLen, PrivateKeyType privkey);
+  public SymmetricKeyType dec(PrivateKeyType privkey, EncryptedDataType c);
 
 }

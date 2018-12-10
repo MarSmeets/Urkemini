@@ -12,8 +12,6 @@ import de.rub.RKE.keminterfaces.KemKeyPair;
 public class EciesKeyPair extends AsymmetricCipherKeyPair implements KemKeyPair{
 
 
-	
-	
 	public EciesKeyPair(AsymmetricKeyParameter arg0, AsymmetricKeyParameter arg1) {
 		super(arg0, arg1);
 		// TODO Auto-generated constructor stub

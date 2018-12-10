@@ -45,7 +45,12 @@ public class EciesKem implements KeyEncapsulationAlgorithmus<KemKeyPair, KemPubl
   private ECKeyGenerationParameters ecKeyGenPara;
   private ECKeyPairGenerator ecKeyGen;
 
+  private final int ECIES_ENCRYPTED_KEY_SIZE = 65;
+  private final int ECIES_OUTPUT_KEY_SIZE = 128;
+  
+  
   public EciesKem() {
+	  //TODO: Work with generic primitives
 	  SecureRandom rnd = new SecureRandom();
 	  hash = new SHA256Digest();
 	  kdf = new KDF1BytesGenerator(hash);
@@ -67,11 +72,21 @@ public class EciesKem implements KeyEncapsulationAlgorithmus<KemKeyPair, KemPubl
 	  return new EciesKeyPair(keypair);
   }
   
+  public KemKeyPair genWithSeed(byte[] seed) {
+	  SecureRandom rnd = new SecureRandom(seed);
+	  ecKeyGen = new ECKeyPairGenerator();
+	  ecKeyGenPara = new ECKeyGenerationParameters(ecDomainPara, rnd);
+	  ecKeyGen.init(ecKeyGenPara);
+	  AsymmetricCipherKeyPair keypair = ecKeyGen.generateKeyPair();
+	  return new EciesKeyPair(keypair);
+  }
+  
   //Computes a public key for the provided private key
   @Override
   public KemPublicKey genPublicK(KemPrivateKey privateKey) {
 	  //Gets the BigInteger and computes the point for the public key
-	  BigInteger d = privateKey.getD();
+	  //TODO: Casts to superclass, probably should be avoided
+	  BigInteger d = ((ECPrivateKeyParameters)privateKey).getD();
       ECPoint q = ecDomainPara.getG().multiply(d);
 
       //Creates the public from the point
@@ -81,15 +96,15 @@ public class EciesKem implements KeyEncapsulationAlgorithmus<KemKeyPair, KemPubl
   }
   
   //Generates and encrypts a key
-  public KemOutput enc(int keyLen, KemPublicKey publicKey){
+  public KemOutput enc(KemPublicKey publicKey){
 	  CipherParameters key;
 	  EciesEncryptedData encryptedKey = new EciesEncryptedData();
 	  EciesOutputKey outputKey;
-	  byte[] encryptedData= new byte[65];
+	  byte[] encryptedData= new byte[ECIES_ENCRYPTED_KEY_SIZE];
 	  
 	  //Uses the kem methods to produce the key
 	  kem.init((ECPublicKeyParameters)publicKey);
-	  key = kem.encrypt(encryptedData, keyLen);
+	  key = kem.encrypt(encryptedData, ECIES_OUTPUT_KEY_SIZE);
 	  
 	  encryptedKey.setData(encryptedData);
 	  outputKey = new EciesOutputKey((KeyParameter)key);
@@ -98,13 +113,13 @@ public class EciesKem implements KeyEncapsulationAlgorithmus<KemKeyPair, KemPubl
   }
   
   //Decrypts a key
-  public KemOutputKey dec(KemEncryptedData encryptedKey, int keyLen, KemPrivateKey privateKey) {
+  public KemOutputKey dec(KemPrivateKey privateKey, KemEncryptedData encryptedKey) {
 	  CipherParameters key;
 	  byte[] encryptedData = encryptedKey.getData();
 	  
 	  //Use the kem methods to decrypt the key
 	  kem.init((ECPrivateKeyParameters)privateKey);
-	  key = kem.decrypt(encryptedData, keyLen);
+	  key = kem.decrypt(encryptedData, ECIES_OUTPUT_KEY_SIZE);
 	  return new EciesOutputKey((KeyParameter)key);
   }
 }

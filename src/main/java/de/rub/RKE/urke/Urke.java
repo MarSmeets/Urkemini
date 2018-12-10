@@ -26,11 +26,11 @@ public class Urke{
       kemPublicK = kemKpair.getPublicK();
       kemPrivK = kemKpair.getPrivateK();
       KemOutput kemOutput;
-      int len = 128;
+
       
-      kemOutput = kem.enc(len, kemPublicK);
+      kemOutput = kem.enc(kemPublicK);
       key1 = kemOutput.getKey();
-      key2 = kem.dec(kemOutput.getData() , len, kemPrivK);
+      key2 = kem.dec(kemPrivK ,kemOutput.getData());
       
   }
 }
