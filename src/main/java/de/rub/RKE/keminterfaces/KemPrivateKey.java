@@ -1,4 +1,4 @@
-package de.rub.keminterfaces;
+package de.rub.RKE.keminterfaces;
 
 import java.math.BigInteger;
 

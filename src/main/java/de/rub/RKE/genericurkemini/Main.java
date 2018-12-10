@@ -1,4 +1,4 @@
-package de.rub.genericurkemini;
+package de.rub.RKE.genericurkemini;
 
 
 

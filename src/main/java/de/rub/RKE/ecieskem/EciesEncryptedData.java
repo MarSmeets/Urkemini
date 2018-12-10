@@ -1,8 +1,8 @@
-package de.rub.ecieskem;
+package de.rub.RKE.ecieskem;
 
 import java.util.Arrays;
 
-import de.rub.keminterfaces.KemEncryptedData;
+import de.rub.RKE.keminterfaces.KemEncryptedData;
 
 
 //Datatype/Class for the encrypted Data, which is computed by the ECIES KEM

@@ -1,4 +1,4 @@
-package de.rub.ecieskem;
+package de.rub.RKE.ecieskem;
 
 
 import java.math.BigInteger;
@@ -11,13 +11,13 @@ import org.bouncycastle.crypto.params.ECPrivateKeyParameters;
 import org.bouncycastle.crypto.params.ECPublicKeyParameters;
 import org.bouncycastle.math.ec.ECPoint;
 
-import de.rub.keminterfaces.KemEncryptedData;
-import de.rub.keminterfaces.KemKeyPair;
-import de.rub.keminterfaces.KemOutput;
-import de.rub.keminterfaces.KemOutputKey;
-import de.rub.keminterfaces.KemPrivateKey;
-import de.rub.keminterfaces.KemPublicKey;
-import de.rub.keminterfaces.KeyEncapsulationAlgorithmus;
+import de.rub.RKE.keminterfaces.KemEncryptedData;
+import de.rub.RKE.keminterfaces.KemKeyPair;
+import de.rub.RKE.keminterfaces.KemOutput;
+import de.rub.RKE.keminterfaces.KemOutputKey;
+import de.rub.RKE.keminterfaces.KemPrivateKey;
+import de.rub.RKE.keminterfaces.KemPublicKey;
+import de.rub.RKE.keminterfaces.KeyEncapsulationAlgorithmus;
 
 import org.bouncycastle.asn1.teletrust.TeleTrusTNamedCurves;
 import org.bouncycastle.asn1.x9.X9ECParameters;

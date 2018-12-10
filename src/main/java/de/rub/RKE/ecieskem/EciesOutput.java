@@ -1,6 +1,6 @@
-package de.rub.ecieskem;
+package de.rub.RKE.ecieskem;
 
-import de.rub.keminterfaces.KemOutput;
+import de.rub.RKE.keminterfaces.KemOutput;
 
 //Datatype/Class for the Output which is produced by the ECIES KEM when calling the encryption function
 public class EciesOutput implements KemOutput{

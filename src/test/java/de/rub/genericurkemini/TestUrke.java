@@ -10,9 +10,9 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.RepetitionInfo;
 
-import de.rub.ecieskem.EciesKem;
-import de.rub.ecieskem.EciesOutputKey;
-import de.rub.urke.Urke;
+import de.rub.RKE.ecieskem.EciesKem;
+import de.rub.RKE.ecieskem.EciesOutputKey;
+import de.rub.RKE.urke.Urke;
 
 
 class TestUrke {

@@ -1,10 +1,10 @@
-package de.rub.ecieskem;
+package de.rub.RKE.ecieskem;
 
 import org.bouncycastle.crypto.params.ECDomainParameters;
 import org.bouncycastle.crypto.params.ECPublicKeyParameters;
 import org.bouncycastle.math.ec.ECPoint;
 
-import de.rub.keminterfaces.KemPublicKey;
+import de.rub.RKE.keminterfaces.KemPublicKey;
 
 //Datatype/Class for the public Key which is used by the ECIES KEM
 public class EciesPublicKey extends ECPublicKeyParameters implements KemPublicKey{

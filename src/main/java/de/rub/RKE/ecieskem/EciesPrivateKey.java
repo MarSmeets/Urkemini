@@ -1,11 +1,11 @@
-package de.rub.ecieskem;
+package de.rub.RKE.ecieskem;
 
 import java.math.BigInteger;
 
 import org.bouncycastle.crypto.params.ECDomainParameters;
 import org.bouncycastle.crypto.params.ECPrivateKeyParameters;
 
-import de.rub.keminterfaces.KemPrivateKey;
+import de.rub.RKE.keminterfaces.KemPrivateKey;
 
 
 //Datatype/Class for the private Key which is used by the ECIES KEM

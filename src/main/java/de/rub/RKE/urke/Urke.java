@@ -1,12 +1,12 @@
-package de.rub.urke;
+package de.rub.RKE.urke;
 
-import de.rub.keminterfaces.KemEncryptedData;
-import de.rub.keminterfaces.KemKeyPair;
-import de.rub.keminterfaces.KemOutput;
-import de.rub.keminterfaces.KemOutputKey;
-import de.rub.keminterfaces.KemPrivateKey;
-import de.rub.keminterfaces.KemPublicKey;
-import de.rub.keminterfaces.KeyEncapsulationAlgorithmus;
+import de.rub.RKE.keminterfaces.KemEncryptedData;
+import de.rub.RKE.keminterfaces.KemKeyPair;
+import de.rub.RKE.keminterfaces.KemOutput;
+import de.rub.RKE.keminterfaces.KemOutputKey;
+import de.rub.RKE.keminterfaces.KemPrivateKey;
+import de.rub.RKE.keminterfaces.KemPublicKey;
+import de.rub.RKE.keminterfaces.KeyEncapsulationAlgorithmus;
 
 //Mini version of the Urke construction to test key encryption/decryption with a generic KEM
 public class Urke{

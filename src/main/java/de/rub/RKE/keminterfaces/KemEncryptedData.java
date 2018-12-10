@@ -1,4 +1,4 @@
-package de.rub.keminterfaces;
+package de.rub.RKE.keminterfaces;
 
 
 //Interface for the encrypted Data, which is computed by the KEM
