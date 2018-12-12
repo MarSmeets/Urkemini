@@ -20,11 +20,11 @@ public class EciesKeyPair extends AsymmetricCipherKeyPair implements KemKeyPair{
 		super(keypair.getPublic(), keypair.getPrivate());
 	}
 
-	public EciesPublicKey getPublicK() {
+	public EciesPublicKey getPublicKey() {
 		return new EciesPublicKey((ECPublicKeyParameters)super.getPublic());
 	}
     
-	public EciesPrivateKey getPrivateK() {
+	public EciesPrivateKey getPrivateKey() {
 		return new EciesPrivateKey((ECPrivateKeyParameters)super.getPrivate());
 	}
 

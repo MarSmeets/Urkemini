@@ -46,11 +46,12 @@ public class EciesKem implements KeyEncapsulationAlgorithmus<KemKeyPair, KemPubl
   private ECKeyPairGenerator ecKeyGen;
 
   private final int ECIES_ENCRYPTED_KEY_SIZE = 65;
+  //TODO: Determine OutputKeysize; Depends on the algorithm, which will be used
   private final int ECIES_OUTPUT_KEY_SIZE = 128;
   
   
   public EciesKem() {
-	  //TODO: Work with generic primitives
+	  //TODO: Discuss;Work with generic primitives;
 	  SecureRandom rnd = new SecureRandom();
 	  hash = new SHA256Digest();
 	  kdf = new KDF1BytesGenerator(hash);
