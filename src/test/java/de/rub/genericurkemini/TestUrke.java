@@ -12,7 +12,13 @@ import org.junit.jupiter.api.RepetitionInfo;
 
 import de.rub.RKE.ecieskem.EciesKem;
 import de.rub.RKE.ecieskem.EciesOutputKey;
+import de.rub.RKE.hkdfrom.HkdfRom;
+import de.rub.RKE.hmac.Hmac;
 import de.rub.RKE.urke.Urke;
+import de.rub.RKE.urke.UrkeSendOutput;
+import de.rub.RKE.userstate.RkeSessionKey;
+import de.rub.RKE.userstate.RkeUserstates;
+import de.rub.RKE.userstate.Userstate;
 
 
 class TestUrke {
@@ -49,12 +55,23 @@ class TestUrke {
 	@DisplayName("URKE uses Ecies Kem to Generate a EciesKemKey")
 	void repeatedTest(){
 		EciesKem  kem= new EciesKem();	
-	    urke = new Urke(kem);
-        byte[] temporary = new byte[1];
-        EciesOutputKey key1 = new EciesOutputKey(temporary);
-        EciesOutputKey key2 = new EciesOutputKey(temporary);
-        urke.init(key1, key2);
-        assertArrayEquals(key1.getKeyBytes(), key2.getKeyBytes());
+		Hmac mac = new Hmac();
+		HkdfRom rom = new HkdfRom();
+	    urke = new Urke(kem, mac, rom);
+	    RkeUserstates userstates = urke.init();
+	    Userstate user1 = userstates.getUserstate1();
+	    Userstate user2 = userstates.getUserstate2();
+	    String associatedData = "port22";
+        UrkeSendOutput urkeOutput;
+        RkeSessionKey sessionKey;
+        for(int i=0; i>10 ; i++) {
+          urkeOutput = urke.send(user1, associatedData);
+          sessionKey = urke.receive(user2, associatedData, urkeOutput.getCipherText());
+  		  assertArrayEquals(urkeOutput.getSessionKey().getKeyBytes(), sessionKey.getKeyBytes());
+  		  assertArrayEquals(user1.getChainingKey().getKeyBytes(), user2.getChainingKey().getKeyBytes());
+  		  assertArrayEquals(user1.getMacKey().getKeyBytes(), user2.getMacKey().getKeyBytes());
+  		  assertArrayEquals(user1.getTranscript().getTranscript(), user2.getTranscript().getTranscript());
+  		}
 		}
 }
 
