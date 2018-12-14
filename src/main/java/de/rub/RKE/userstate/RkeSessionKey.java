@@ -2,7 +2,7 @@ package de.rub.RKE.userstate;
 
 import java.util.Arrays;
 
-//TODO: Temporary class. Needs discussion.
+//TODO: Temporary class. Depends on cipher used for symmetric Encryption.
 public class RkeSessionKey {
 
 	byte[] sessionKey;

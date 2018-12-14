@@ -26,6 +26,7 @@ public class RkeCipherText {
   public byte[] getCipherTextBytes() {
 	  byte[] cipherTextBytes = new byte[encryptedData.getData().length+tag.getTag().length];
 	  ByteArrayOutputStream outputStream = new ByteArrayOutputStream( );
+	  //TODO: Exception handling
 	  try {
 		outputStream.write(encryptedData.getData());
 		outputStream.write(tag.getTag());

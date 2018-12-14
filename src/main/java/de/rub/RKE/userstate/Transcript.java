@@ -27,6 +27,7 @@ public class Transcript {
   
   public void appendToTranscript(byte[] transcript) {
 	ByteArrayOutputStream outputStream = new ByteArrayOutputStream( );
+	//TODO: Exception handling
 	try {
 		outputStream.write(this.transcript);
 		outputStream.write(transcript);
@@ -39,6 +40,7 @@ public class Transcript {
   
   public void appendToTranscript(String associatedData, RkeCipherText cipherText) {
 	ByteArrayOutputStream outputStream = new ByteArrayOutputStream( );
+	//TODO: Exception handling
 	try {
 		outputStream.write(associatedData.getBytes());
 		outputStream.write(cipherText.getCipherTextBytes());

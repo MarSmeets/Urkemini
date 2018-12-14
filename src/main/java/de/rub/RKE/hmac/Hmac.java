@@ -29,6 +29,7 @@ public class Hmac implements MessageAuthenticationCode<MacTag, MacKey>{
 	  
 	  public void setInput(String associatedData, KemEncryptedData encryptedData) {
 		ByteArrayOutputStream outputStream = new ByteArrayOutputStream( );
+		//TODO:Exception handling
 		try {
 			outputStream.write(associatedData.getBytes());
 			outputStream.write(encryptedData.getData());

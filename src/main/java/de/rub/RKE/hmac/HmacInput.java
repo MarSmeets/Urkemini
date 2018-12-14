@@ -7,6 +7,8 @@ import java.util.Arrays;
 import de.rub.RKE.keminterfaces.KemEncryptedData;
 import de.rub.RKE.macinterfaces.MacInput;
 
+
+//Might be removed
 public class HmacInput extends MacInput{
 	   byte[] input;
 	   

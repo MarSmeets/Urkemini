@@ -21,8 +21,8 @@ public class HkdfRom implements RandomOracle<RomOutput>{
 	private HKDFBytesGenerator kdf;
 	private SHA512Digest hash;
 	
-	//TODO: Discuss where to declare sessionKeysize
-	// Since this is the concrete implementation it might be okay to use fixed key sizes
+
+	//TODO: Need global declaration of key sizes etc.
 	private final int SESSION_KEY_SIZE = 128;
 	private final int MAC_KEY_SIZE = 128;
 	private final int KEM_KEY_GENERATION_SEED_SIZE = 128;
@@ -39,6 +39,7 @@ public class HkdfRom implements RandomOracle<RomOutput>{
 		byte[] macKeyBytes = new byte[MAC_KEY_SIZE];
 		byte[] secretKeySeed = new byte[KEM_KEY_GENERATION_SEED_SIZE];
 		ByteArrayOutputStream outputStream = new ByteArrayOutputStream( );
+		//TODO: Exception handling
 		try {
 			outputStream.write(chainingKey.getKeyBytes());
 			outputStream.write(kemOutputKey.getKeyBytes());
@@ -56,7 +57,6 @@ public class HkdfRom implements RandomOracle<RomOutput>{
 		kdf.generateBytes(secretKeySeed, 0, secretKeySeed.length);
 		RkeSessionKey sessionKey = new RkeSessionKey(sessionKeyBytes);
 		ChainingKey newChainingKey = new ChainingKey(chainingKeyBytes);
-		//TODO: Use the MacKey interface
 		HmacKey macKey= new HmacKey(macKeyBytes);
 		return new HkdfRomOutput(sessionKey, newChainingKey, macKey, secretKeySeed);
 	}

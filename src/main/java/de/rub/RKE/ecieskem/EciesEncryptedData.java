@@ -20,6 +20,7 @@ public class EciesEncryptedData implements KemEncryptedData{
 	   return data;
    }
    
+   //TODO: Do we need getter/setter methods for all classes?
    public void setData(byte[] input) {
 	   data = Arrays.copyOf(input, input.length);
    }

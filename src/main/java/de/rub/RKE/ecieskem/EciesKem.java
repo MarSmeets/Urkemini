@@ -86,11 +86,10 @@ public class EciesKem implements KeyEncapsulationAlgorithmus<KemKeyPair, KemPubl
   @Override
   public KemPublicKey genPublicK(KemPrivateKey privateKey) {
 	  //Gets the BigInteger and computes the point for the public key
-	  //TODO: Casts to superclass, probably should be avoided
-	  BigInteger d = ((ECPrivateKeyParameters)privateKey).getD();
+	  BigInteger d = ((EciesPrivateKey)privateKey).getD();
       ECPoint q = ecDomainPara.getG().multiply(d);
 
-      //Creates the public from the point
+      //Creates the public key from the point
       ECPublicKeyParameters publicKey = new ECPublicKeyParameters(q, ecDomainPara);
       
       return new EciesPublicKey(publicKey);
